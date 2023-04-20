@@ -1,0 +1,108 @@
+:root {
+    --primary: hsl(220, 98%, 61%);
+    --primary-bg: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
+    --light-gray: hsl(0 66% 5%);
+    --light-grayish-blue: hsl(236, 33%, 92%);
+    --lighter-grayish-blue: hsl(233, 11%, 84%);
+    --dark-grayish-blue: hsl(236, 9%, 61%);
+    --darker-grayish-blue: hsl(235, 19%, 35%);
+    /* Dark Theme  */
+    --dark-blue: hsl(235, 21%, 11%);
+    --darker-desaturated-blue: hsl(235, 24%, 19%);
+    --light-grayish-blue-dark: hsl(234, 39%, 85%);
+    --light-grayish-blue-hover: hsl(236, 33%, 92%);
+    --dark-grayish-blue-dark: hsl(234, 11%, 52%);
+    --dark-grayish-blue-dark: hsl(233, 14%, 35%);
+    --darker-grayish-blue-dark: hsl(237, 14%, 26%);
+    /* typography */
+    --font: 18px;
+    --primary-weight: 400;
+    --secondary-weight: 700;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--dark-blue);
+    width: 100%;
+    max-height: 100%;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.bg-img {
+    background: url('./images/bg-desktop-dark.jpg');
+    height: 40dvh;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 4rem;
+}
+
+.todo-container {
+    display: block;
+    margin: 0 auto;
+}
+
+.todo-container h1 {
+    color: var(--light-grayish-blue);
+}
+
+.input .input-top {
+    width: 100%;
+    display: inline-flex;
+    position: relative;
+    margin-bottom: 5%;
+}
+
+.text-input {
+    width: 30vw;
+    background-color: var(--darker-desaturated-blue);
+    border: none;
+    height: 3rem;
+}
+
+.todo-item {
+    width: 30vw;
+    background-color: var(--darker-desaturated-blue);
+    border: none;
+    height: 3rem;
+    border-bottom: 1px solid var(--light-grayish-blue-dark);
+}
+
+.input-top .check-box {
+    position: absolute;
+    top: 1rem;
+    border-radius: 8px;
+    margin-left: 3%;
+    background-color: transparent;
+}
+
+
+.todo-bottom {
+    display: flex;
+    justify-content: space-between;
+    width: 30vw;
+    background-color: var(--darker-desaturated-blue);
+    padding: 4%;
+}
+
+.todo-bottom a {
+    text-decoration: none;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+}
