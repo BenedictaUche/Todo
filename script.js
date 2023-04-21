@@ -18,6 +18,7 @@ let todoBottom = document.querySelector('.todo-bottom');
 let addBtn = document.querySelector('.addbtn');
 let input = document.getElementById('#new-todo');
 let checkbox = document.querySelector('.check-box');
+let todoItems = document.querySelector('.todo-items')
 // let inputValue = input.target.value;
 
 
@@ -45,18 +46,46 @@ themeBtn.addEventListener('click', function () {
 todos = [];
 
 
-addBtn.addEventListener('click', function (e) {
-    e.preventDefault();
-    let input = document.querySelector('#new-todo');
-    if (checkbox.checked) {
-        console.log(input.value);
-        alert('It is a priority')
-    } else {
-        console.log(input.value);
-        alert('It is not a priority')
-    }
+let todoForm = document.querySelector('form');
+let todoInput = document.getElementById('new-todo');
+let todoList = document.querySelector('.todo-items');
 
-})
+todoForm.addEventListener('submit', addItems)
+function addItems(event) {
+    event.preventDefault();
+
+    let inputValue = todoInput.value.trim();
+
+    if (inputValue !== '') {
+        let newTodoItem = document.createElement('li');
+        newTodoItem.classList.add('todo-item');
+
+        let itemCheckbox = document.createElement('div');
+        itemCheckbox.classList.add('item-checkbox');
+        itemCheckbox.innerHTML = '<input type="checkbox" class="checkbox"><label></label>';
+        newTodoItem.appendChild(itemCheckbox);
+
+        let itemText = document.createElement('div');
+        itemText.classList.add('item-text');
+        itemText.innerHTML = '<p>' + inputValue + '</p>';
+        newTodoItem.appendChild(itemText);
+
+        let itemDelete = document.createElement('div');
+        itemDelete.classList.add('item-delete');
+        itemDelete.innerHTML = '<button aria-label="Delete todo"><img src="./images/icon-cross.svg" alt="Delete todo"></button>';
+        newTodoItem.appendChild(itemDelete);
+
+        todoList.appendChild(newTodoItem);
+
+        todoInput.value = ''; // clear the input field
+    }
+};
+
+//Push all my todoitems to my array
+console.log(todoList.push(todos))
+
+
+//Delete Todo
 
 // function items() {
 
