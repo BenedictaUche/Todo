@@ -16,14 +16,14 @@ let inputGroup = document.querySelector('.input-group');
 let todoItem = document.querySelector('.todo-item');
 let todoBottom = document.querySelector('.todo-bottom');
 let addBtn = document.querySelector('.addbtn');
-let input = document.getElementById('#new-todo');
+// let input = document.getElementById('#new-todo');
 let checkbox = document.querySelector('.check-box');
 let todoForm = document.querySelector('form');
 let todoInput = document.getElementById('new-todo');
 let todoList = document.querySelector('.todo-items');
 let todoItems = document.querySelector('.todo-items');
 let deleteBtn = document.querySelector('deletebtn');
-// let inputValue = input.target.value;
+let priority = document.querySelector('priority')
 
 
 themeBtn.addEventListener('click', function () {
@@ -49,10 +49,6 @@ themeBtn.addEventListener('click', function () {
 
 
 
-// deleteBtn.addEventListener('click', function () {
-//     todoList.removeChild(newTodoItem)
-// })
-
 class Todo {
     constructor(check, todoValue) {
         this.check = check;
@@ -75,10 +71,13 @@ function addTodoToLibrary(e) {
 todoForm.addEventListener('submit', addTodoToLibrary);
 let todoCount = 0;
 
+
+
 function addItems() {
     for (let i = todoCount; i < todos.length; i++) {
 
         let inputValue = todoInput.value.trim();
+
 
         if (inputValue !== '') {
 
@@ -92,22 +91,36 @@ function addItems() {
 
             let itemText = document.createElement('div');
             itemText.classList.add('item-text');
-            itemText.innerHTML = '<p>' + inputValue + '</p>';
-            newTodoItem.appendChild(itemText);
+            if (checkbox.checked) {
+                itemText.innerHTML = '<p>' + inputValue + '</p>';
+                newTodoItem.appendChild(itemText);
+                newTodoItem.style.textDecoration = 'line-through';
+            } else {
+                itemText.innerHTML = '<p>' + inputValue + '</p>';
+                newTodoItem.appendChild(itemText);
+            }
+
 
             let itemDelete = document.createElement('div');
             itemDelete.classList.add('item-delete');
             itemDelete.innerHTML = '<button aria-label="Delete todo" class="deletebtn"><img src="./images/icon-cross.svg" alt="Delete todo"></button>';
             newTodoItem.appendChild(itemDelete);
 
+            itemDelete.addEventListener('click', function () {
+                todos.splice(i, 1);
+                todoList.removeChild(newTodoItem)
+            })
+
             todoList.appendChild(newTodoItem);
-            const todo = {
-                text: inputValue,
-                completed: false
-            };
-            if (checkbox.checked) {
-                todo.completed = true;
-            } else true;
+            // const todo = {
+            //     text: inputValue,
+            //     completed: false
+            // };
+            // if (checkbox.checked) {
+            //     todo.completed = true;
+            // } else false;
+
+
 
             console.log(todos)
 
@@ -117,12 +130,12 @@ function addItems() {
 };
 
 
-//Push all my todoitems to my array
-
-
-//Delete Todo
-
-// function items() {
-
+// if (todos[i].check = true) {
+//     inputValue.style.textDecoration = 'line-through'
+// } else {
+//     inputValue.style.textDecoration = 'none'
 // }
-// items.push(todos)
+// itemCheckbox.addEventListener('click', () => {
+//     todos[i].check = !todos[i].check;
+//     addItems()
+// })
