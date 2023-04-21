@@ -219,6 +219,6 @@ form .input-group>button:hover {
 /* Styling for footer */
 
 footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
 }

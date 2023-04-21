@@ -18,7 +18,11 @@ let todoBottom = document.querySelector('.todo-bottom');
 let addBtn = document.querySelector('.addbtn');
 let input = document.getElementById('#new-todo');
 let checkbox = document.querySelector('.check-box');
-let todoItems = document.querySelector('.todo-items')
+let todoForm = document.querySelector('form');
+let todoInput = document.getElementById('new-todo');
+let todoList = document.querySelector('.todo-items');
+let todoItems = document.querySelector('.todo-items');
+let deleteBtn = document.querySelector('deletebtn');
 // let inputValue = input.target.value;
 
 
@@ -42,21 +46,28 @@ themeBtn.addEventListener('click', function () {
     }
 });
 
+let todoCount = 0;
+const todos = [];
 
-todos = [];
+// deleteBtn.addEventListener('click', function () {
+//     todoList.removeChild(newTodoItem)
+// })
 
 
-let todoForm = document.querySelector('form');
-let todoInput = document.getElementById('new-todo');
-let todoList = document.querySelector('.todo-items');
+function addTodoToLibrary() {
+
+}
 
 todoForm.addEventListener('submit', addItems)
+
+
 function addItems(event) {
     event.preventDefault();
 
     let inputValue = todoInput.value.trim();
 
     if (inputValue !== '') {
+
         let newTodoItem = document.createElement('li');
         newTodoItem.classList.add('todo-item');
 
@@ -72,17 +83,27 @@ function addItems(event) {
 
         let itemDelete = document.createElement('div');
         itemDelete.classList.add('item-delete');
-        itemDelete.innerHTML = '<button aria-label="Delete todo"><img src="./images/icon-cross.svg" alt="Delete todo"></button>';
+        itemDelete.innerHTML = '<button aria-label="Delete todo" class="deletebtn"><img src="./images/icon-cross.svg" alt="Delete todo"></button>';
         newTodoItem.appendChild(itemDelete);
 
         todoList.appendChild(newTodoItem);
+        const todo = {
+            text: inputValue,
+            completed: false
+        };
+        if (checkbox.checked) {
+            todo.completed = true;
+        } else true;
+
+        todos.push(todo);
+        console.log(todos)
 
         todoInput.value = ''; // clear the input field
     }
 };
 
+
 //Push all my todoitems to my array
-console.log(todoList.push(todos))
 
 
 //Delete Todo
