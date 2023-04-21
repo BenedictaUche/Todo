@@ -21,9 +21,13 @@ let checkbox = document.querySelector('.check-box');
 let todoForm = document.querySelector('form');
 let todoInput = document.getElementById('new-todo');
 let todoList = document.querySelector('.todo-items');
-let todoItems = document.querySelector('.todo-items');
+// let todoItems = document.querySelector('.todo-items');
 let deleteBtn = document.querySelector('deletebtn');
 let priority = document.querySelector('priority')
+let itemCheckbox = document.querySelector('.checkbox');
+let remain = document.querySelector('.remain');
+let filters = document.querySelector('filters');
+let completed = document.querySelector('complete');
 
 
 themeBtn.addEventListener('click', function () {
@@ -101,6 +105,7 @@ function addItems() {
             }
 
 
+
             let itemDelete = document.createElement('div');
             itemDelete.classList.add('item-delete');
             itemDelete.innerHTML = '<button aria-label="Delete todo" class="deletebtn"><img src="./images/icon-cross.svg" alt="Delete todo"></button>';
@@ -108,19 +113,19 @@ function addItems() {
 
             itemDelete.addEventListener('click', function () {
                 todos.splice(i, 1);
-                todoList.removeChild(newTodoItem)
+                todoList.removeChild(newTodoItem);
+                remaining = todos.length;
+                remain.innerHTML = remaining;
             })
+            let remaining = todos.length;
+            remain.innerHTML = remaining;
 
             todoList.appendChild(newTodoItem);
-            // const todo = {
-            //     text: inputValue,
-            //     completed: false
-            // };
-            // if (checkbox.checked) {
-            //     todo.completed = true;
-            // } else false;
 
 
+            // if (itemCheckbox.checked) {
+
+            // }
 
             console.log(todos)
 
@@ -130,12 +135,12 @@ function addItems() {
 };
 
 
-// if (todos[i].check = true) {
-//     inputValue.style.textDecoration = 'line-through'
-// } else {
-//     inputValue.style.textDecoration = 'none'
-// }
-// itemCheckbox.addEventListener('click', () => {
-//     todos[i].check = !todos[i].check;
-//     addItems()
+// let completed = document.querySelector('complete');
+
+// completed.addEventListener('click', function () {
+//     todos.forEach(completedTodos)
 // })
+
+// function completedTodos() {
+//     console.log(newTodoItem)
+// }
