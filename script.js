@@ -46,59 +46,73 @@ themeBtn.addEventListener('click', function () {
     }
 });
 
-let todoCount = 0;
-const todos = [];
+
+
 
 // deleteBtn.addEventListener('click', function () {
 //     todoList.removeChild(newTodoItem)
 // })
 
-
-function addTodoToLibrary() {
-
+class Todo {
+    constructor(check, todoValue) {
+        this.check = check;
+        this.todoValue = todoValue;
+    }
 }
 
-todoForm.addEventListener('submit', addItems)
+const todos = [];
+function addTodoToLibrary(e) {
+    e.preventDefault();
+    const todoForm = document.querySelector('form');
+    const check = todoForm.checkbox.checked;
+    const todoValue = todoForm.newtodo.value;
+    const newTodo = new Todo(check, todoValue)
+    todos.push(newTodo);
+    addItems();
+    todoForm.reset();
+}
 
+todoForm.addEventListener('submit', addTodoToLibrary);
+let todoCount = 0;
 
-function addItems(event) {
-    event.preventDefault();
+function addItems() {
+    for (let i = todoCount; i < todos.length; i++) {
 
-    let inputValue = todoInput.value.trim();
+        let inputValue = todoInput.value.trim();
 
-    if (inputValue !== '') {
+        if (inputValue !== '') {
 
-        let newTodoItem = document.createElement('li');
-        newTodoItem.classList.add('todo-item');
+            let newTodoItem = document.createElement('li');
+            newTodoItem.classList.add('todo-item');
 
-        let itemCheckbox = document.createElement('div');
-        itemCheckbox.classList.add('item-checkbox');
-        itemCheckbox.innerHTML = '<input type="checkbox" class="checkbox"><label></label>';
-        newTodoItem.appendChild(itemCheckbox);
+            let itemCheckbox = document.createElement('div');
+            itemCheckbox.classList.add('item-checkbox');
+            itemCheckbox.innerHTML = '<input type="checkbox" class="checkbox"><label></label>';
+            newTodoItem.appendChild(itemCheckbox);
 
-        let itemText = document.createElement('div');
-        itemText.classList.add('item-text');
-        itemText.innerHTML = '<p>' + inputValue + '</p>';
-        newTodoItem.appendChild(itemText);
+            let itemText = document.createElement('div');
+            itemText.classList.add('item-text');
+            itemText.innerHTML = '<p>' + inputValue + '</p>';
+            newTodoItem.appendChild(itemText);
 
-        let itemDelete = document.createElement('div');
-        itemDelete.classList.add('item-delete');
-        itemDelete.innerHTML = '<button aria-label="Delete todo" class="deletebtn"><img src="./images/icon-cross.svg" alt="Delete todo"></button>';
-        newTodoItem.appendChild(itemDelete);
+            let itemDelete = document.createElement('div');
+            itemDelete.classList.add('item-delete');
+            itemDelete.innerHTML = '<button aria-label="Delete todo" class="deletebtn"><img src="./images/icon-cross.svg" alt="Delete todo"></button>';
+            newTodoItem.appendChild(itemDelete);
 
-        todoList.appendChild(newTodoItem);
-        const todo = {
-            text: inputValue,
-            completed: false
-        };
-        if (checkbox.checked) {
-            todo.completed = true;
-        } else true;
+            todoList.appendChild(newTodoItem);
+            const todo = {
+                text: inputValue,
+                completed: false
+            };
+            if (checkbox.checked) {
+                todo.completed = true;
+            } else true;
 
-        todos.push(todo);
-        console.log(todos)
+            console.log(todos)
 
-        todoInput.value = ''; // clear the input field
+            todoInput.value = ''; // clear the input field
+        }
     }
 };
 
