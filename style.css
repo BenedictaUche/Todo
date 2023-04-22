@@ -22,6 +22,7 @@
     --box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+
 /* Reset default styles */
 * {
     margin: 0;
@@ -47,7 +48,7 @@ p {
 }
 
 .bg-img {
-    background: url(./images/bg-desktop-dark.jpg);
+    background: url(./images/bg-desktop-dark.jpg) no-repeat center center / cover;
     height: 40dvh;
     z-index: -1;
 }
@@ -102,7 +103,7 @@ form .input-group>button:hover {
 }
 
 .todo-content form .text-input {
-    flex: 1;
+
     border: none;
     background-color: transparent;
     color: var(--light-grayish-blue);
@@ -213,12 +214,194 @@ form .input-group>button:hover {
     margin-left: 5%;
 }
 
+button {
+    color: var(--light-grayish-blue);
+}
+
+.filters li>button {
+    list-style: none;
+    margin-left: 5%;
+    color: var(--light-grayish-blue);
+}
 
 
 
 /* Styling for footer */
 
-footer {
-    position: fixed;
+.attribution {
+    color: blueviolet;
+
+}
+
+.footer-text {
+    position: absolute;
     bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-text p {
+    margin: 0;
+    font-size: var(--primary-weight);
+}
+
+.attribution a {
+    text-decoration: underline;
+    text-align: center;
+    color: var(--primary);
+}
+
+
+
+
+@media (max-width: 767px) {
+
+    .bg-img {
+        background: url(./images/bg-desktop-dark.jpg) no-repeat center center / cover;
+        height: 40vh;
+        width: 100%;
+        z-index: -1;
+    }
+
+    .container {
+        max-width: 100%;
+        margin: 0;
+        margin-right: 0;
+        padding: 3rem;
+        color: var(--light-grayish-blue-dark);
+    }
+
+    header {
+        margin-top: 10%;
+    }
+
+    .todo-container {
+        padding: 0;
+    }
+
+    form {
+        width: 100%;
+        margin-top: 15%;
+    }
+
+    .todo-content form .input-group {
+        display: flex;
+        /* justify-content: space-between; */
+        align-items: center;
+        margin-bottom: 1.5rem;
+        background-color: var(--darker-desaturated-blue);
+        /* box-shadow: var(--box-shadow); */
+        width: 80vw;
+    }
+
+    .todo-content form .check-box {
+        margin-left: 1.5rem;
+        cursor: pointer;
+        width: 1rem;
+        height: 1rem;
+    }
+
+
+    .todo-content form .text-input {
+        border: none;
+        background-color: transparent;
+        color: var(--light-grayish-blue);
+        font-size: 1.6rem;
+        padding: 1.2rem;
+        border-radius: 5px;
+        width: 100%;
+        /* box-shadow: var(--box-shadow); */
+    }
+
+    .todo-bottom {
+        position: relative;
+    }
+
+    .filters {
+        position: absolute;
+        bottom: -150%;
+        /* left: 5%; */
+        right: 0;
+        display: flex;
+        width: 80vw;
+        justify-content: space-evenly;
+        padding: 1.2rem;
+        background-color: var(--darker-desaturated-blue);
+        box-shadow: var(--box-shadow);
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+
+    }
+
+    .filters li {
+        list-style: none;
+    }
+}
+
+@media (min-width:768px) and (max-width:1023px) {
+    .bg-img {
+        background: url(./images/bg-desktop-dark.jpg) no-repeat center center / cover;
+        height: 30vh;
+        width: 100%;
+        z-index: -1;
+    }
+
+    header {
+        margin-top: 29%;
+    }
+
+    .container {
+        max-width: 100%;
+        margin: 0;
+        margin-right: 0;
+        padding: 3rem;
+        color: var(--light-grayish-blue-dark);
+    }
+
+    .todo-content form .input-group {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        margin-top: 5%;
+        background-color: var(--darker-desaturated-blue);
+    }
+}
+
+@media (min-width:375px) and (max-width:667px) {
+    .todo-item {
+        padding: 1.2rem;
+        width: 80vw;
+    }
+
+
+
+    .todo-bottom {
+        width: 80vw;
+    }
+}
+
+@media (min-width:375px) and (max-width:667px) {
+    .todo-item {
+        padding: 1.2rem;
+        width: 80vw;
+    }
+
+    .todo-bottom {
+        width: 80vw;
+    }
+
+    .todo-content form .check-box {
+        margin-left: 1.5rem;
+        cursor: pointer;
+        width: 1rem;
+        height: 1rem;
+    }
+
+    .footer-text p {
+        margin-left: 5%;
+        font-size: var(--primary-weight);
+    }
 }
