@@ -16,6 +16,7 @@ let inputGroup = document.querySelector('.input-group');
 let todoItem = document.querySelector('.todo-item');
 let todoBottom = document.querySelector('.todo-bottom');
 let addBtn = document.querySelector('.addbtn');
+let textInput = document.querySelector('.text-input');
 let checkbox = document.querySelector('.check-box');
 let todoForm = document.querySelector('form');
 let todoInput = document.getElementById('new-todo');
@@ -38,6 +39,7 @@ themeBtn.addEventListener('click', function () {
         themeBtn.innerHTML = '<img src="images/icon-moon.svg" alt="Toggle theme">';
         body.style.backgroundColor = 'var(--light-grayish-blue)';
         inputGroup.style.backgroundColor = 'var(--light-grayish-blue)';
+        textInput.style.color = 'var(--darker-desaturated-blue)';
         // todoList.style.backgroundColor = 'var(--light-grayish-blue)';
         todoItem.style.backgroundColor = 'var(--light-grayish-blue)';
         todoItem.style.borderBottom = 'none';
@@ -150,16 +152,14 @@ completed.addEventListener('click', completedTodos)
 active.addEventListener('click', activeTodos)
 all.addEventListener('click', allTodos)
 clear.addEventListener('click', () => {
-    const completeTodos = todos.filter(function (todo) {
-        return (todo.check === true)
-    })
-    completeTodos.forEach(function (todo) {
-        completeTodos.splice(0, completeTodos.length)
-    })
-    todoList.innerHTML = ''
-    console.log(completeTodos)
+    const completeTodos = todos.filter(todo => !todo.check);
+    todos.splice(0, todos.length, ...completeTodos);
+    todoList.innerHTML = '';
+    let remaining = todos.length;
+    remain.innerHTML = remaining;
+    addItems();
+});
 
-})
 
 
 
@@ -187,11 +187,12 @@ function completedTodos() {
         newTodoItem.appendChild(itemDelete);
 
         itemDelete.addEventListener('click', function () {
-            todos.splice(i, 1);
+            todos.splice(todos.indexOf(todo), 1);
             todoList.removeChild(newTodoItem);
             remaining = todos.length;
             remain.innerHTML = remaining;
-        })
+        });
+
         let remaining = todos.length;
         remain.innerHTML = remaining;
 
@@ -207,6 +208,7 @@ function activeTodos() {
         return (todo.check === false)
     })
     todoList.innerHTML = '';
+
     actTodos.forEach(function (todo) {
         const newTodoItem = document.createElement('li');
         newTodoItem.classList.add('todo-item');
@@ -225,11 +227,11 @@ function activeTodos() {
         newTodoItem.appendChild(itemDelete);
 
         itemDelete.addEventListener('click', function () {
-            todos.splice(i, 1);
+            todos.splice(todos.indexOf(todo), 1);
             todoList.removeChild(newTodoItem);
             remaining = todos.length;
             remain.innerHTML = remaining;
-        })
+        });
         let remaining = todos.length;
         remain.innerHTML = remaining;
 
@@ -244,48 +246,46 @@ function allTodos() {
         return (todo.check === false || todo.check === true)
     })
     todoList.innerHTML = '';
-    for (let i = todoCount; i < todos.length; i++) {
-        allOfTodos.forEach(function (todo) {
-            const newTodoItem = document.createElement('li');
-            newTodoItem.classList.add('todo-item');
-            let itemCheckbox = document.createElement('div');
-            itemCheckbox.classList.add('item-checkbox');
+    allOfTodos.forEach(function (todo) {
+        const newTodoItem = document.createElement('li');
+        newTodoItem.classList.add('todo-item');
+        let itemCheckbox = document.createElement('div');
+        itemCheckbox.classList.add('item-checkbox');
 
-            if (todo.check == true) {
-                itemCheckbox.innerHTML = '<input type="checkbox" class="checkbox" checked><label></label>';
-            }
-            else {
-                itemCheckbox.innerHTML = '<input type="checkbox" class="checkbox"><label></label>';
-            }
-            newTodoItem.appendChild(itemCheckbox);
-            let itemText = document.createElement('div');
-            itemText.classList.add('item-text');
-            itemText.innerHTML = `<p>${todo.todoValue}</p>`;
-            newTodoItem.appendChild(itemText);
-            if (todo.check == true) {
-                newTodoItem.style.textDecoration = 'line-through';
-            }
-            else {
-                newTodoItem.style.textDecoration = 'none';
-            }
+        if (todo.check == true) {
+            itemCheckbox.innerHTML = '<input type="checkbox" class="checkbox" checked><label></label>';
+        }
+        else {
+            itemCheckbox.innerHTML = '<input type="checkbox" class="checkbox"><label></label>';
+        }
+        newTodoItem.appendChild(itemCheckbox);
+        let itemText = document.createElement('div');
+        itemText.classList.add('item-text');
+        itemText.innerHTML = `<p>${todo.todoValue}</p>`;
+        newTodoItem.appendChild(itemText);
+        if (todo.check == true) {
+            newTodoItem.style.textDecoration = 'line-through';
+        }
+        else {
+            newTodoItem.style.textDecoration = 'none';
+        }
 
-            let itemDelete = document.createElement('div');
-            itemDelete.classList.add('item-delete');
-            itemDelete.innerHTML = '<button aria-label="Delete todo" class="deletebtn"><img src="./images/icon-cross.svg" alt="Delete todo"></button>';
-            newTodoItem.appendChild(itemDelete);
+        let itemDelete = document.createElement('div');
+        itemDelete.classList.add('item-delete');
+        itemDelete.innerHTML = '<button aria-label="Delete todo" class="deletebtn"><img src="./images/icon-cross.svg" alt="Delete todo"></button>';
+        newTodoItem.appendChild(itemDelete);
 
-            itemDelete.addEventListener('click', function () {
-                todos.splice(i, 1);
-                todoList.removeChild(newTodoItem);
-                remaining = todos.length;
-                remain.innerHTML = remaining;
-            })
-            let remaining = todos.length;
+        itemDelete.addEventListener('click', function () {
+            todos.splice(todos.indexOf(todo), 1);
+            todoList.removeChild(newTodoItem);
+            remaining = todos.length;
             remain.innerHTML = remaining;
+        });
+        let remaining = todos.length;
+        remain.innerHTML = remaining;
 
-            todoList.appendChild(newTodoItem);
-        })
-    }
+        todoList.appendChild(newTodoItem);
+    })
     console.log(allOfTodos)
 }
 

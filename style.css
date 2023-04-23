@@ -98,9 +98,14 @@ form .input-group>button:hover {
 .todo-content form .check-box {
     margin-left: 1.5rem;
     cursor: pointer;
-    width: 1rem;
-    height: 1rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 1rem;
 }
+
+/* input#priority.check-box.check {
+    border-radius: 10px;
+} */
 
 .todo-content form .text-input {
 
@@ -128,9 +133,12 @@ form .input-group>button:hover {
     cursor: pointer;
 }
 
-.todo-content form button:hover {
-    background-color: darken(var(--primary-color), 10%);
+.input-group button:hover {
+    background-color: var(--primary);
+    color: var(--dark-grayish-blue);
+    transition: all 200ms ease-in-out;
 }
+
 
 /* Style todo items */
 .todo-items {
@@ -152,10 +160,12 @@ form .input-group>button:hover {
 /* .todo-item .checkbox {
     margin-right: 1.5rem;
 } */
-/* .item-checkbox .checkbox {
+.todo-item .item-checkbox input {
     background: linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+    border-radius: 50px;
 }
 
+/*
 .item-checkbox input[type="checkbox"]:checked+label {
     background: linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 } */
